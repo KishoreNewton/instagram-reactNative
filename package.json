@@ -1,33 +1,16 @@
 {
-  "name": "instagram",
+  "name": "clone",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec ./node_modules/.bin/babel src/server.js --out-dir lib"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/KishoreNewton/instagram-reactnative.git"
+    "start": "nodemon src/server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/KishoreNewton/instagram-reactnative/issues"
-  },
-  "homepage": "https://github.com/KishoreNewton/instagram-reactnative#readme",
   "dependencies": {
-    "@babel/node": "^7.12.1",
-    "@babel/polyfill": "^7.12.1",
-    "babel-cli": "^6.26.0",
-    "babel-node": "^0.0.1-security",
-    "dotenv": "^0.4.0",
-    "graphql-yoga": "^1.18.3"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.12.1",
-    "@babel/core": "^7.12.3",
-    "@babel/preset-env": "^7.12.1"
+    "apollo-server": "^2.18.2",
+    "graphql": "^15.3.0"
   }
 }
