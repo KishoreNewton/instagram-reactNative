@@ -1,3 +1,4 @@
 {
-    "ext": "js graphql"
+    "ext": "js graphql",
+    "ignore": ["lib/*.js", "README"] 
 }
