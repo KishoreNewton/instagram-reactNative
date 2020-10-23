@@ -1,10 +1,12 @@
 import * as express from 'express';
 import { ApolloServer, gql } from 'apollo-server-express';
 import schema from './schema';
+import logger from 'morgan';
 
 const PORT = 4000;
 
-const app = express();
+const app = express.default();
+app.use(logger("dev"))
 
 const typeDefs = gql`
   type Query {
