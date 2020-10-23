@@ -1,4 +1,4 @@
 {
-    "ext": "js graphql",
-    "ignore": ["dist/*.js", "README"] 
+    "ext": "ts graphql",
+    "ignore": ["dist/*.ts", "README"] 
 }
