@@ -6,7 +6,7 @@ import logger from 'morgan';
 const PORT = 4000;
 
 const app = express.default();
-app.use(logger("dev"))
+app.use(logger('dev'));
 
 const typeDefs = gql`
   type Query {
