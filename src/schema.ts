@@ -4,10 +4,10 @@ import { loadFilesSync } from '@graphql-tools/load-files';
 import * as path from 'path';
 
 const allTypes = loadFilesSync(
-  path.join(__dirname, '/graphql/**/*.graphql')
+  path.join(__dirname, '/graphql/**/**/*.graphql')
 );
 const allResolvers = loadFilesSync(
-  path.join(__dirname, '/graphql/**/*.ts')
+  path.join(__dirname, '/graphql/**/**/*.ts')
 );
 
 interface makeExe {
