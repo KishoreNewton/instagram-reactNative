@@ -25,6 +25,7 @@
     "merge-schemas": "^0.2.3",
     "morgan": "^1.10.0",
     "prisma-client-lib": "^1.34.10",
+    "random-words": "^1.1.1",
     "ts-node": "^9.0.0"
   },
   "devDependencies": {
