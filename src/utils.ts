@@ -1961,7 +1961,6 @@ function randInt(lessThan: number): number {
   return Math.floor(Math.random() * lessThan);
 }
 
-export const secretGenerator = () => {
-  console.log(generateRandomWord());
-  return generateRandomWord();
+export const generateSecret = (): string => {
+  return `${generateRandomWord()} ${generateRandomWord()}`;
 };
