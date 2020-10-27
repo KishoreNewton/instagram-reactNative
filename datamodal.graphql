@@ -40,8 +40,7 @@ type Comment {
 type File {
   id: ID! 
   url: String!
-  posts: Post!
-}
+  posts: Post!}
 
 type Room {
   id: ID! 
