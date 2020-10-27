@@ -1,3 +1,6 @@
+import nodemailer from 'nodemailer';
+const sgTransport = 'nodemailer-sendgrid-transport';
+
 const wordList: string[] = [
   'ability',
   'able',
@@ -1963,4 +1966,18 @@ function randInt(lessThan: number): number {
 
 export const generateSecret = (): string => {
   return `${generateRandomWord()} ${generateRandomWord()}`;
+};
+
+export const sendMail = (email: string): null => null;
+
+export const sendSecretMail = (
+  address: string,
+  secret: string
+): void => {
+  const email = {
+    from: 'fakeagramdev@ins.com',
+    to: address,
+    subject: '🔓 Login Secret for your account is 🔓',
+    html: `Hey there! Your login secret is <bold>${secret}</bold>. <br/><br/>Copy and paste in app to login.`
+  };
 };
