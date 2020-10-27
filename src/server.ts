@@ -1,8 +1,10 @@
 import * as express from 'express';
 import { ApolloServer, gql } from 'apollo-server-express';
 import schema from './schema';
-import logger from 'morgan'; 
+import logger from 'morgan';
+import { sendSecretMail } from './utils';
 
+sendSecretMail('kishorenke@gmail.com', '123');
 // @ts-ignore
 const PORT: number = process.env.INSTAGRAMRN_PORT | 4000;
 const app = express.default();

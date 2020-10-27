@@ -1,5 +1,7 @@
+import { strict } from 'assert';
 import nodemailer from 'nodemailer';
-const sgTransport = 'nodemailer-sendgrid-transport';
+const sgTransport = require('nodemailer-sendgrid-transport');
+import sgMail from '@sendgrid/mail';
 
 const wordList: string[] = [
   'ability',
@@ -1968,16 +1970,51 @@ export const generateSecret = (): string => {
   return `${generateRandomWord()} ${generateRandomWord()}`;
 };
 
-export const sendMail = (email: string): null => null;
+interface EMAIL {
+  from: string;
+  to: string;
+  subject: string;
+  html: string;
+}
+
+interface EMAIL_OPTIONS {
+  service: string;
+  auth: {
+    api_user: string;
+    api_key: string;
+  };
+}
+
+// const sendMail = (email: EMAIL): any => {
+//   const options: EMAIL_OPTIONS = {
+//     service: 'SendGrid',
+//     auth: {
+//       api_user: process.env.SENDGRID_USERNAME,
+//       api_key: process.env.SENDGRID_PASSWORD
+//     }
+//   };
+//   const client = nodemailer.createTransport(sgTransport(options));
+//   return client.sendMail(email);
+// };
 
 export const sendSecretMail = (
   address: string,
   secret: string
 ): void => {
-  const email = {
-    from: 'fakeagramdev@ins.com',
+  const email: EMAIL = {
+    from: 'support@kishorenewton.com',
     to: address,
     subject: '🔓 Login Secret for your account is 🔓',
-    html: `Hey there! Your login secret is <bold>${secret}</bold>. <br/><br/>Copy and paste in app to login.`
+    html: `Hey there! Your login secret is 🔓 <strong>${secret}</strong> 🔓. <br/><br/>Copy and paste in app/web to login.`
   };
+  return sendMail(email);
+};
+
+sgMail.setApiKey(process.env.SENDGRID_API);
+
+const sendMail = (email: EMAIL) => {
+  sgMail
+    .send(email)
+    .then(() => console.log('Email sent'))
+    .catch(error => console.error(error));
 };
