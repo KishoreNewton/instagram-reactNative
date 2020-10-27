@@ -2005,7 +2005,7 @@ export const sendSecretMail = (
     from: 'support@kishorenewton.com',
     to: address,
     subject: '🔓 Login Secret for your account is 🔓',
-    html: `Hey there! Your login secret is 🔓 <strong>${secret}</strong> 🔓. <br/><br/>Copy and paste in app/web to login.`
+    html: `Hey there! Your login secret is 🔓 <strong>${secret}</strong> 🔓. <br/><br/>Go ahead. Copy and paste in app/web to login.`
   };
   return sendMail(email);
 };

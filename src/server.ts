@@ -4,7 +4,7 @@ import schema from './schema';
 import logger from 'morgan';
 import { sendSecretMail } from './utils';
 
-sendSecretMail('kishorenke@gmail.com', '123');
+// sendSecretMail('kishorenkepro@gmail.com', '123');
 // @ts-ignore
 const PORT: number = process.env.INSTAGRAMRN_PORT | 4000;
 const app = express.default();
