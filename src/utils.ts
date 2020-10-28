@@ -1,6 +1,3 @@
-import { strict } from 'assert';
-import nodemailer from 'nodemailer';
-const sgTransport = require('nodemailer-sendgrid-transport');
 import sgMail from '@sendgrid/mail';
 
 const wordList: string[] = [
@@ -1997,6 +1994,13 @@ interface EMAIL_OPTIONS {
 //   return client.sendMail(email);
 // };
 
+interface EMAIL {
+  from: string;
+  to: string;
+  subject: string;
+  html: string;
+}
+
 export const sendSecretMail = (
   address: string,
   secret: string
@@ -2004,13 +2008,20 @@ export const sendSecretMail = (
   const email: EMAIL = {
     from: 'support@kishorenewton.com',
     to: address,
-    subject: '🔓 Login Secret for your account is 🔓',
+    subject: '🔒 Login Secret for your account is 🔒',
     html: `Hey there! Your login secret is 🔓 <strong>${secret}</strong> 🔓. <br/><br/>Go ahead. Copy and paste in app/web to login.`
   };
   return sendMail(email);
 };
 
-sgMail.setApiKey(process.env.SENDGRID_API);
+// sgMail.setApiKey(process.env.SENDGRID_API);
+
+// const sendMail = (email: EMAIL) => {
+//   sgMail
+//     .send(email)
+//     .then(() => console.log('Email sent'))
+//     .catch(error => console.error(error));
+// };
 
 const sendMail = (email: EMAIL) => {
   sgMail
