@@ -1982,18 +1982,6 @@ interface EMAIL_OPTIONS {
   };
 }
 
-// const sendMail = (email: EMAIL): any => {
-//   const options: EMAIL_OPTIONS = {
-//     service: 'SendGrid',
-//     auth: {
-//       api_user: process.env.SENDGRID_USERNAME,
-//       api_key: process.env.SENDGRID_PASSWORD
-//     }
-//   };
-//   const client = nodemailer.createTransport(sgTransport(options));
-//   return client.sendMail(email);
-// };
-
 interface EMAIL {
   from: string;
   to: string;
