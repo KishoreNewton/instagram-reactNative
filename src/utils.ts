@@ -2014,14 +2014,7 @@ export const sendSecretMail = (
   return sendMail(email);
 };
 
-// sgMail.setApiKey(process.env.SENDGRID_API);
-
-// const sendMail = (email: EMAIL) => {
-//   sgMail
-//     .send(email)
-//     .then(() => console.log('Email sent'))
-//     .catch(error => console.error(error));
-// };
+sgMail.setApiKey(process.env.SENDGRID_API);
 
 const sendMail = (email: EMAIL) => {
   sgMail
