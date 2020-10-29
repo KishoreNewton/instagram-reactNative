@@ -29,7 +29,7 @@ const verifyUser = async (
   }
 };
 
-const authenticateJwt = (
+export const authenticateJwt = (
   req: Request,
   res: Response,
   next: NextFunction
@@ -45,6 +45,6 @@ const authenticateJwt = (
       }
       next();
     }
-  );
+  )(req, res, next);
 
 passport.use(new Strategy(jwtOptions, verifyUser));
