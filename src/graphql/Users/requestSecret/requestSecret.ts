@@ -8,7 +8,7 @@ export default {
       args: any,
       { req }: { req: any }
     ) => {
-      console.log(req);
+      console.log(req.user);
       const { email } = args;
       const loginSecret = generateSecret();
       console.log(loginSecret);
