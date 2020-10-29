@@ -6,6 +6,7 @@ import {
   VerifiedCallback
 } from 'passport-jwt';
 import { prisma } from '../generated/prisma-client';
+import { Request, Response, NextFunction } from 'express';
 
 const jwtOptions: StrategyOptions = {
   secretOrKey: process.env.JWT_SECRET,
@@ -27,5 +28,23 @@ const verifyUser = async (
     return done(error, false);
   }
 };
+
+const authenticateJwt = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) =>
+  passport.authenticate(
+    'jwt',
+    {
+      session: false
+    },
+    (error: any, user: any) => {
+      if (user) {
+        req.user = user;
+      }
+      next();
+    }
+  );
 
 passport.use(new Strategy(jwtOptions, verifyUser));
