@@ -13,36 +13,41 @@ export default {
       isAuthenticated(req);
       const { postId } = args;
       const { user }: any = req;
-      const existingLike = await prisma.$exists.like({
-        AND: [
-          {
-            user: {
-              id: user.id
+      try {
+        const existingLike = await prisma.$exists.like({
+          AND: [
+            {
+              user: {
+                id: user.id
+              }
+            },
+            {
+              post: {
+                id: postId
+              }
             }
-          },
-          {
-            post: {
-              id: postId
-            }
-          }
-        ]
-      });
-      if (existingLike) {
-      } else {
-        const newLike = await prisma.createLike({
-          user: {
-            connect: {
-              id: user.id
-            }
-          },
-          post: {
-            connect: {
-              id: postId
-            }
-          }
+          ]
         });
+        if (existingLike) {
+          // To Do
+        } else {
+          const newLike = await prisma.createLike({
+            user: {
+              connect: {
+                id: user.id
+              }
+            },
+            post: {
+              connect: {
+                id: postId
+              }
+            }
+          });
+        }
+        return true;
+      } catch (error) {
+        console.error(error);
       }
-      return true;
     }
   }
 };
