@@ -3,12 +3,18 @@ import { generateSecret, sendSecretMail } from '../../../utils';
 
 export default {
   Mutation: {
-    requestSecret: async (_: undefined | null, args: any) => {
+    requestSecret: async (
+      _: undefined | null,
+      args: any,
+      { req }: { req: any }
+    ) => {
+      console.log(req);
       const { email } = args;
       const loginSecret = generateSecret();
       console.log(loginSecret);
       try {
-        await sendSecretMail(email, loginSecret)
+        throw new Error('somethig went wrong');
+        await sendSecretMail(email, loginSecret);
         await prisma.updateUser({
           data: { loginSecret },
           where: { email }

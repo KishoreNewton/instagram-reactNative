@@ -27,9 +27,7 @@ const resolvers = {
 
 const server = new ApolloServer({
   schema,
-  context: req => {
-    console.log(req);
-  }
+  context: ({ req }) => ({req})
 });
 server.applyMiddleware({ app });
 

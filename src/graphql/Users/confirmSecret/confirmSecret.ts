@@ -3,7 +3,8 @@ import { generateToken } from '../../../utils';
 
 export default {
   Mutation: {
-    confirmSecret: async (_: undefined, args: any) => {
+    confirmSecret: async (_: undefined, args: any, { req }: {req: any}) => {
+      console.log(req)
       const { email, secret } = args;
       const user = await prisma.user({ email });
       if (user.loginSecret === secret) {
