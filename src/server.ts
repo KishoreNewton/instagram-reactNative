@@ -2,16 +2,16 @@ import * as express from 'express';
 import { ApolloServer, gql } from 'apollo-server-express';
 import schema from './schema';
 import logger from 'morgan';
-import { prisma } from '../generated/prisma-client/index'
+import { prisma } from '../generated/prisma-client/index';
 import { sendSecretMail } from './utils';
 import passport from 'passport';
-import { authenticateJwt } from  './passport';
+import { authenticateJwt } from './passport';
 
 // @ts-ignore
 const PORT: number = process.env.INSTAGRAMRN_PORT | 4000;
 const app = express.default();
 app.use(logger('dev'));
-app.use(authenticateJwt)
+app.use(authenticateJwt);
 
 const typeDefs = gql`
   type Query {
@@ -25,7 +25,12 @@ const resolvers = {
   }
 };
 
-const server = new ApolloServer({ schema, context: { prisma } });
+const server = new ApolloServer({
+  schema,
+  context: req => {
+    console.log(req);
+  }
+});
 server.applyMiddleware({ app });
 
 app.listen({ port: PORT }, () =>

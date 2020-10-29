@@ -4,8 +4,7 @@ export default {
   Mutation: {
     createAccount: async (
       _: undefined | null,
-      args: any,
-      { prisma }: { prisma: any }
+      args: any
     ) => {
       console.log(prisma);
       const { username, email, firstName, lastName, bio = '' } = args;
