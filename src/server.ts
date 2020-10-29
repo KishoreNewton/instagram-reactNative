@@ -10,7 +10,6 @@ import './passport';
 const PORT: number = process.env.INSTAGRAMRN_PORT | 4000;
 const app = express.default();
 app.use(logger('dev'));
-app.use('/graphql', passport.authenticate('jwt'));
 
 const typeDefs = gql`
   type Query {
