@@ -27,7 +27,21 @@ export default {
           }
         ]
       });
-      if (existingLike)
+      if (existingLike) {
+      } else {
+        const newLike = await prisma.createLike({
+          user: {
+            connect: {
+              id: user.id
+            }
+          },
+          post: {
+            connect: {
+              id: postId
+            }
+          }
+        });
+      }
       return true;
     }
   }
