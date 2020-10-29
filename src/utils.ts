@@ -1,4 +1,5 @@
 import sgMail from '@sendgrid/mail';
+import jwt from 'jsonwebtoken';
 
 const wordList: string[] = [
   'ability',
@@ -2010,3 +2011,6 @@ const sendMail = (email: EMAIL) => {
     .then(() => console.log('Email sent'))
     .catch(error => console.error(error));
 };
+
+export const generateToken = (id: string) =>
+  jwt.sign({ id }, process.env.JWT_SECRET);
