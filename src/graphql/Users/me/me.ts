@@ -1,16 +1,21 @@
 import { prisma } from '../../../../generated/prisma-client';
-import { USER_FRAGMENT } from '../../../fragments';
 
 export default {
   Query: {
-    me: (
+    me: async (
       _: any,
       __: any,
       { req, isAuthenticated }: { req: any; isAuthenticated: any }
     ) => {
       isAuthenticated(req);
       const { user } = req;
-      return prisma.user({ id: user.id }).$fragment(USER_FRAGMENT);
+      const userProfile = await prisma.user({ id: user.id });
+      const posts = await prisma.user({ id: user.id }).posts();
+      return {
+        user: userProfile,
+        posts
+      };
     }
-  }
+  },
+
 };
