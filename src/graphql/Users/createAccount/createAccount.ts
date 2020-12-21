@@ -6,7 +6,6 @@ export default {
       _: undefined | null,
       args: any
     ) => {
-      console.log(prisma);
       const { username, email, firstName, lastName, bio = '' } = args;
       const user = await prisma.createUser({
         username,

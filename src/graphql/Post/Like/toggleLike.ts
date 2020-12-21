@@ -9,7 +9,6 @@ export default {
       args: any,
       { req }: { req: Request }
     ): Promise<any> => {
-      console.log(req.user);
       isAuthenticated(req);
       const { postId } = args;
       const { user }: any = req;

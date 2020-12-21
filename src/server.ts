@@ -5,6 +5,7 @@ import logger from 'morgan';
 import { prisma } from '../generated/prisma-client/index';
 import { sendSecretMail } from './utils';
 import passport from 'passport';
+import { isAuthenticated } from "./middlewares";
 import { authenticateJwt } from './passport';
 
 // @ts-ignore
@@ -27,7 +28,7 @@ const resolvers = {
 
 const server = new ApolloServer({
   schema,
-  context: ({ req }) => ({req})
+  context: ({ req }) => ({req, isAuthenticated})
 });
 server.applyMiddleware({ app });
 

@@ -8,12 +8,9 @@ export default {
       args: any,
       { req }: { req: any }
     ) => {
-      console.log(req.user);
       const { email } = args;
       const loginSecret = generateSecret();
-      console.log(loginSecret);
       try {
-        throw new Error('somethig went wrong');
         await sendSecretMail(email, loginSecret);
         await prisma.updateUser({
           data: { loginSecret },
