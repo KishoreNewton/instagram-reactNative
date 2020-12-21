@@ -14,7 +14,7 @@ export default {
       const { id: parentId } = parent;
       try {
         const exists = await prisma.$exists.user({
-          AND: [{ id: parentId }, { followers_some: user.id}]
+          AND: [{ id: parentId }, { followers_some: { id: user.id } }]
         });
         if (exists) {
           return true;
