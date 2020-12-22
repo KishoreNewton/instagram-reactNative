@@ -1,4 +1,3 @@
-import { use } from 'passport';
 import { prisma } from '../../../../generated/prisma-client';
 
 export default {
@@ -10,9 +9,9 @@ export default {
     ) => {
       isAuthenticated(req);
       const { user } = req;
-      const { captions, files } = args;
+      const { caption, files } = args;
       const post = await prisma.createPost({
-        captions,
+        caption,
         user: { connect: { id: user.id } }
       });
       files.forEach(async (file: any) => {
@@ -25,6 +24,7 @@ export default {
           }
         });
       });
+      return post;
     }
   }
 };

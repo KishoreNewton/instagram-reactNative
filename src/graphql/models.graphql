@@ -22,11 +22,12 @@ type Post {
   id: ID! 
   files: [File!]!
   location: String
-  captions: String!
+  caption: String
   likes: [Like!]!
   comments: [Comment!]!
   user: User!
   isLiked: Boolean!
+  likeCount: Int!
 }
 
 type Like {

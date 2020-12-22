@@ -7,7 +7,7 @@ export default {
         where: {
           OR: [
             {location_contains: args.term },
-            { captions_contains: args.term }
+            { caption_contains: args.term }
           ]
         }
       })
