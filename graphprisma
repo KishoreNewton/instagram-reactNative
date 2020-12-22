@@ -41,7 +41,7 @@ type Comment {
 type File {
   id: ID! @id
   url: String!
-  posts: Post!
+  post: Post!
 }
 
 type Room {
