@@ -2,23 +2,19 @@ import { prisma } from '../../../../generated/prisma-client';
 
 export default {
   Query: {
-    seeFeed: async (
+    seeRooms: (
       _: undefined,
       __: undefined,
       { req, isAuthenticated }: { req: any; isAuthenticated: any }
     ) => {
       isAuthenticated(req);
       const { user } = req;
-      const following = await prisma
-        .user({ id: user.id })
-        .following();
-      return prisma.posts({
+      return prisma.rooms({
         where: {
-          user: {
-            id_in: [...following.map(user => user.id), user.id]
+          participants_some: {
+            id: user.id
           }
-        },
-        orderBy: "createdAt_DESC"
+        }
       });
     }
   }
