@@ -1,7 +1,8 @@
 export const USER_FRAGMENT = `
     fragment UserParts on User {
         id
-        userename
+        username
+        avatar
     }
 `;
 
@@ -45,6 +46,7 @@ export const FULL_POST_FRAGMENT = `
         user {
             id
             username
+            avatar
         }
     }
 `;
@@ -54,6 +56,22 @@ export const ROOM_FRAGMENT = `
         id
         participants {
             id
+            username
+            avatar
+        }
+        messages {
+            id
+            text
+            to {
+                id
+                username
+                avatar
+            }
+            from {
+                id
+                username
+                avatar
+            }
         }
     }
 `;

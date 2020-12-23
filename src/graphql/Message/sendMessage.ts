@@ -31,7 +31,7 @@ export default {
           throw new Error("Something went wrong"); 
         }
       } else {
-        room = await prisma.room({ id: roomId }).$fragment(ROOM_FRAGMENT);
+        room = await prisma.room({ id: roomId }).$fragment(ROOM_FRAGMENT)!;
       }
 
       if (!room) {

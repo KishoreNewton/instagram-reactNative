@@ -8,11 +8,11 @@ export default {
       { req, isAuthenticated }: { req: any; isAuthenticated: any }
     ) => {
       isAuthenticated(req);
-      const { username, email, firstName, lastName, bio } = args;
+      const { username, email, firstName, lastName, bio, avatar } = args;
       const { user } = req;
       return prisma.updateUser({
         where: { id: user.id },
-        data: { username, email, firstName, lastName, bio }
+        data: { username, email, firstName, lastName, bio, avatar }
       });
     }
   }

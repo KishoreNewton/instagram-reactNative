@@ -2,9 +2,6 @@ import * as express from 'express';
 import { ApolloServer, gql } from 'apollo-server-express';
 import schema from './schema';
 import logger from 'morgan';
-import { prisma } from '../generated/prisma-client/index';
-import { sendSecretMail } from './utils';
-import passport from 'passport';
 import { isAuthenticated } from "./middlewares";
 import { authenticateJwt } from './passport';
 
