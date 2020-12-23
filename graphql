@@ -1,69 +1,74 @@
 type User {
-  id: ID! 
-  username: String! 
-  email: String! 
-  firstName: String
-  lastName: String
-  fullName: String
-  isFollowing: Boolean!
-  isSelf: Boolean!
+  id: ID! @id
+  avatar: String
+  username: String! @unique
+  email: String! @unique
+  firstName: String!
+  lastName: String!
   bio: String
-  isBlocked: Boolean! 
-  posts: [Post!]!
-  likes: [Like!]!
-  comments: [Comment!]!
-  followers: [User!]! 
-  following: [User!]! 
-  rooms: [Room!]!
+  isBlocked: Boolean! @default(value: false)
+  posts: [Post!]! @relation(name: "PostsOfUser" onDelete: CASCADE)
+  likes: [Like!]! @relation(name: "LikesOfUser" onDelete: CASCADE)
+  comments: [Comment!]! @relation(name: "CommentsOfUser" onDelete: CASCADE)
+  followers: [User!]! @relation(name: "FollowRelation")
+  following: [User!]! @relation(name: "FollowRelation")
+  rooms: [Room!]! 
   loginSecret: String
+  createdAt: DateTime @createdAt
+  updatedAt: DateTime @updatedAt
 }
 
 type Post {
-  id: ID! 
-  files: [File!]!
+  id: ID! @id
+  files: [File!]! @relation(name: "FilesOfPost" onDelete: CASCADE)
   location: String
   caption: String
-  likes: [Like!]!
-  comments: [Comment!]!
-  user: User!
-  isLiked: Boolean!
+  likes: [Like!]! @relation(name: "LikeOfPost" onDelete: CASCADE)
+  comments: [Comment!]! @relation(name: "CommentOfPost", onDelete: CASCADE)
+  user: User! @relation(name: "PostsOfUser")
+  createdAt: DateTime @createdAt
+  updatedAt: DateTime @updatedAt
 }
 
 type Like {
-  id: ID! 
-  user: User!
-  post: Post!
+  id: ID! @id
+  user: User @relation(name: "LikesOfUser")
+  post: Post @relation(name: "LikeOfPost")
+  createdAt: DateTime @createdAt
+  updatedAt: DateTime @updatedAt
 }
 
 type Comment {
-  id: ID! 
+  id: ID! @id
   text: String!
-  user: User!
-  post: Post!
+  user: User @relation(name: "CommentsOfUser")
+  post: Post @relation(name: "CommentOfPost")
+  createdAt: DateTime @createdAt
+  updatedAt: DateTime @updatedAt
 }
 
 type File {
-  id: ID! 
+  id: ID! @id
   url: String!
-  post: Post!
+  post: Post @relation(name: "FilesOfPost")
+  createdAt: DateTime @createdAt
+  updatedAt: DateTime @updatedAt
 }
 
 type Room {
-  id: ID! 
-  participnts: [User!]!
+  id: ID! @id
+  participants: [User!]!
   messages: [Message!]!
+  createdAt: DateTime @createdAt
+  updatedAt: DateTime @updatedAt
 }
 
 type Message {
-  id: ID! 
+  id: ID! @id
   text: String!
-  from: User! 
-  to: User! 
+  from: User! @relation(name: "From")
+  to: User! @relation(name: "To")
   room: Room!
+  createdAt: DateTime @createdAt
+  updatedAt: DateTime @updatedAt
 }
-
-type UserProfile {
-    user: User!
-    posts: [Post!]!
-}
-
