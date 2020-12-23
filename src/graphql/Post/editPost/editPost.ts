@@ -8,17 +8,23 @@ export default {
       { req, isAuthenticated }: { req: any; isAuthenticated: any }
     ) => {
       isAuthenticated(req);
-      const { id, caption, location } = args;
+      const { id, caption, location, action } = args;
       const { user } = req;
       const post = await prisma.$exists.post({
         id,
         user: { id: user.id }
       });
       if (post) {
-        return prisma.updatePost({
-          data: { caption, location },
-          where: { id }
-        });
+        if (action === 'EDIT') {
+          return prisma.updatePost({
+            data: { caption, location },
+            where: { id }
+          });
+        } else if (action === 'DELETE') {
+          return prisma.deletePost({
+            id
+          });
+        }
       } else {
         throw Error(`You can't edit this post`);
       }
