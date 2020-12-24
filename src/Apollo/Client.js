@@ -1,7 +1,12 @@
 import ApolloClient from 'apollo-boost';
+import { defaults, resolvers } from './LocalState';
 
-const ApolloClient = new ApolloClient({
-  uri: 'http://localhost:4000/graphql'
+const Client = new ApolloClient({
+  uri: 'http://localhost:4000/graphql',
+  clientState: {
+    defaults,
+    resolvers
+  }
 });
 
-export default ApolloClient;
+export default Client;
