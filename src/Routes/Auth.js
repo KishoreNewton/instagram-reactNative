@@ -8,4 +8,4 @@ function Auth () {
     )
 }
 
-export default Auth
+export default Auth 
