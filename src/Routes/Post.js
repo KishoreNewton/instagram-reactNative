@@ -1,1 +1,2 @@
-export default () => 'Post';
+export default () => "Auth";
+export default () => "Post";

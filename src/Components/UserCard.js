@@ -1,10 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import Avatar from './Avatar';
-import FatText from './FatText';
-import { Link } from 'react-router-dom';
-import FollowButton from './FollowButton';
+import React from "react";
+import styled from "styled-components";
+import PropTypes from "prop-types";
+import Avatar from "./Avatar";
+import FatText from "./FatText";
+import { Link } from "react-router-dom";
+import FollowButton from "./FollowButton";
 
 const Card = styled.div`
   ${props => props.theme.whiteBox}
@@ -25,7 +25,7 @@ const ELink = styled(Link)`
 
 const UserCard = ({ id, username, isFollowing, url, isSelf }) => (
   <Card>
-    <EAvatar url={url} size={'md'} />
+    <EAvatar url={url} size={"md"} />
     <ELink to={`/${username}`}>
       <FatText text={username} />
     </ELink>
