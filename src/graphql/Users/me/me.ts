@@ -9,12 +9,8 @@ export default {
     ) => {
       isAuthenticated(req);
       const { user } = req;
-      const userProfile = await prisma.user({ id: user.id });
-      const posts = await prisma.user({ id: user.id }).posts();
-      return {
-        user: userProfile,
-        posts
-      };
+      console.log('working')
+      return await prisma.user({ id: user.id });
     }
   }
 };
